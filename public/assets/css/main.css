@@ -1,0 +1,130 @@
+@font-face {
+    font-family: regular;
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: bold;
+    src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Helvetica, serif;
+    font-family: regular;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: #d8d5c4;
+}
+
+.active {
+    font-family: bold;
+}
+
+.container {
+    width: 70%;
+    height: auto;
+    margin: auto;
+    margin-top: 1em;
+    box-shadow: #7070709a 2px 2px 7px;
+    border-radius: 10px;
+    /* Shadow effect */
+}
+
+.nav {
+    font-size: 1em;
+    width: 100%;
+    height: 2rem;
+    background: #5a6e5a;
+    border-bottom: solid #F2FFFD 2px;
+}
+
+.nav ul {
+    padding-left: 0;
+    width: 50%;
+    display: flex;
+    margin: auto;
+    height: 100%;
+}
+
+.nav ul li {
+    list-style: none;
+    padding-left: 1em;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.nav ul li a:hover {
+    color: white;
+    cursor: pointer;
+    font-family: bold;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer {
+    padding-top: .9em;
+    text-align: center;
+    color: white;
+    height: 3em;
+    width: 100%;
+    background: #5a6e5a;
+    border-top: solid #F2FFFD 2px;
+    border-radius: 0 0 10px 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        transition: .5s ease-in-out;
+        width: 100%;
+    }
+    .nav ul {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 70%;
+    }
+    .nav ul {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 780px) {
+    .container {
+        width: 70%;
+    }
+    .nav ul {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 70%;
+    }
+    .nav ul {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 70%;
+    }
+    .nav ul {
+        width: 50%;
+    }
+}

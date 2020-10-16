@@ -1,0 +1,61 @@
+@font-face {
+    font-family: regular;
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: bold;
+    src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+* {
+    font-family: regular;
+}
+
+.gallery {
+    width: 100%;
+    height: 60vh;
+    background-color: black;
+    background-blend-mode: luminosity;
+    background-size: cover;
+    background-position: center;
+    transition: .5s ease-in-out;
+    animation-name: slider;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+}
+
+
+/* animate slider */
+
+@keyframes slider {
+    0% {
+        background-image: url("../images/anthony-riera--Bp4C_xKRFA-unsplash.jpg");
+    }
+    25% {
+        background-image: url("../images/anthony-riera--Bp4C_xKRFA-unsplash.jpg");
+    }
+    25.1% {
+        background-image: url("../images/hal-gatewood-e3Y23rtVk8k-unsplash.jpg");
+    }
+    50% {
+        background-image: url("../images/hal-gatewood-e3Y23rtVk8k-unsplash.jpg");
+    }
+    50.1% {
+        background-image: url("../images/mi-pham-xtd3zYWxEs4-unsplash.jpg");
+    }
+    75% {
+        background-image: url("../images/mi-pham-xtd3zYWxEs4-unsplash.jpg");
+    }
+    75.1% {
+        background-image: url("../images/sharon-christina-rorvik-CLyL_YVsWI8-unsplash.jpg");
+    }
+    100% {
+        background-image: url("../images/sharon-christina-rorvik-CLyL_YVsWI8-unsplash.jpg");
+    }
+}
+
+.gallery:hover {
+    cursor: default;
+    background-color: #f5c3658f;
+}

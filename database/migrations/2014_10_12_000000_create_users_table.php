@@ -19,9 +19,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['admin', 'parent']);
             $table->rememberToken();
             $table->timestamps();
         });
+
+
+        App\Models\User::create([
+            'name' => 'admin',
+            'email' => 'admin@conadopt.com',
+            'password' => \Hash::make('admin@conadopt!!'),
+            'role' => 'admin',
+        ]);
     }
 
     /**

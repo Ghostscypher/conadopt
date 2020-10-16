@@ -1,0 +1,160 @@
+@font-face {
+    font-family: regular;
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: bold;
+    src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+* {
+    font-family: regular;
+}
+
+.error {
+    font-size: .8rem;
+    color: red;
+    padding-left: .5em;
+}
+
+
+/* .gallery {
+    width: 100%;
+    height: 0vh;
+    background-color: #fcd58e;
+    transition: .5s ease-in-out;
+    animation-name: drop;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+} */
+
+.container {
+    background-color: #fcd58e;
+}
+
+@keyframes drop {
+    0% {
+        height: 0vh;
+    }
+    100% {
+        height: 60vh;
+    }
+}
+
+.title {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #a44539;
+}
+
+.input-wrap {
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-row {
+    width: 50%;
+    margin: auto;
+    padding: .5em;
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1em;
+}
+
+.input-row label {
+    flex: 1;
+    color: #c05e51;
+    font-weight: bold;
+}
+
+.input-row input {
+    color: #5a6e5a;
+    background: transparent;
+    border: none;
+    border-bottom: solid #5a6e5a 1px;
+    padding-left: .5em;
+}
+
+.input-n-error {
+    flex: 2;
+}
+
+.buttons {
+    width: 40%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    flex-basis: 45%;
+    margin-top: 5em;
+    padding: .5em;
+    border: none;
+    background: #c05e51;
+    color: #fff;
+    border-radius: 36px;
+}
+
+#a-tag-block {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+
+.buttons button:hover {
+    background: #a54a3f;
+    color: #fff;
+    border: none;
+}
+
+#a-tag-block:hover {
+    color: #fff;
+}
+
+#a-tag-block a:hover {
+    color: #fff;
+}
+
+.contact-us-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 2em;
+    padding: 1em;
+    background: #c05e51;
+    border-radius: 5px;
+}
+
+.email,
+.contact,
+.address {
+    width: 100%;
+    display: flex;
+    border-bottom: solid rgba(211, 211, 211, 0.452) 1px;
+    padding: .3em 0;
+}
+
+.email-title,
+.contact-title,
+.address-title {
+    width: 50%;
+    font-family: bold;
+    color: white;
+    text-align: right;
+    padding-right: 1em;
+}
+
+.email-value,
+.contact-value,
+.address-value {
+    width: 50%;
+    font-family: regular;
+    color: white;
+    padding-left: 1em;
+}

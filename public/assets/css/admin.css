@@ -1,0 +1,294 @@
+@font-face {
+    font-family: regular;
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: bold;
+    src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: regular;
+}
+
+.error {
+    font-size: .8rem;
+    color: red;
+    padding-left: .5em;
+}
+
+body {
+    background: #F2FFFD;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans;
+    background: #d8d5c4;
+}
+
+.container {
+    position: relative;
+    width: 70%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    margin-top: 1em;
+}
+
+.report-popup {
+    position: absolute;
+    z-index: +2;
+    width: 100%;
+}
+
+select {
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    background: #fde2de;
+    border: solid #b3837a7a 1px;
+    padding: .2em;
+}
+
+.option-class {
+    padding: 5em;
+}
+
+.report-popup-div {
+    width: 80%;
+    margin: auto;
+    padding: .5em;
+    background: #ffd1ca;
+    box-shadow: #7070709a 2px 2px 7px;
+    border-radius: 5px;
+}
+
+.report-table {
+    width: 90%;
+    margin: auto;
+    margin-top: .5em;
+}
+
+.report-filters {
+    width: 90%;
+    margin: auto;
+}
+
+.report-table table {
+    font-size: .85rem;
+    text-align: left;
+    border-collapse: collapse;
+    border: solid #D13035 1px;
+}
+
+.report-table table tr th,
+.report-table table tr td {
+    border: solid #D13035 1px;
+    padding: .3em;
+}
+
+.table-title {
+    text-align: center;
+    font-family: bold;
+}
+
+.popup {
+    width: 100%;
+    position: relative;
+}
+
+.popup-container {
+    margin-top: 10em;
+    width: 100%;
+    position: absolute;
+}
+
+.popup-div {
+    width: 80%;
+    margin: auto;
+    background: #ffd1ca;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: #7070709a 2px 2px 7px;
+}
+
+.nav {
+    width: 100%;
+    background: #5a6e5a;
+    height: 2em;
+    border-bottom: solid #F2FFFD 2px;
+    border-radius: 5px 5px 0 0;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+}
+
+.nav ul li {
+    list-style: none;
+    flex-basis: content;
+    height: min-content;
+    color: white;
+    padding-right: 1em;
+    cursor: pointer;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    height: auto;
+    color: white;
+}
+
+.nav ul li a:hover,
+.nav ul li:hover {
+    font-family: bold;
+}
+
+.nav ul li a:hover,
+.nav ul li:last-child:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.child-details {
+    width: 100%;
+    height: auto;
+    background: #c0bca7;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    border-radius: 0 0 5px 5px;
+}
+
+.actual-child-details {
+    padding-left: 2em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    width: 65%;
+    height: auto;
+    background: rgba(255, 255, 255, 0.63);
+    margin-left: 2em;
+    border-left: solid #D13035 4px;
+    margin-bottom: .5em;
+    border-radius: 5px;
+    display: flex;
+}
+
+.child-name {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.child-image {
+    width: 25%;
+}
+
+.child-image-content {
+    width: 80%;
+    margin: auto;
+}
+
+.child-image img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.actual-child-detail-content {
+    width: 85%;
+}
+
+.child-details-div {
+    width: 100%;
+}
+
+.child-gender,
+.child-age,
+.child-adopted-by,
+.child-place-of-birth {
+    font-size: .8em;
+    margin-left: .3em;
+}
+
+.child-adopted-by a {
+    text-decoration: none;
+    color: purple;
+}
+
+.child-adopted-by a:hover {
+    cursor: pointer;
+}
+
+.edit-buttons {
+    width: 50%;
+    height: 1.5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-buttons button {
+    border: none;
+    background: #c05e51;
+    padding: 0 1em 0;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.edit-buttons button:hover {
+    background: #e07d70;
+}
+
+.save-changes-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5em;
+}
+
+.save-changes-buttons button {
+    padding: .3em 1em;
+    border-radius: 5px;
+    border: none;
+    background: #D13035;
+    color: white;
+    cursor: pointer;
+}
+
+.save-changes-buttons button:hover {
+    background: rgb(236, 65, 70);
+}
+
+.age,
+.name {
+    width: 75%;
+    display: flex;
+    margin-top: .3em;
+}
+
+.gender {
+    margin-top: .3em;
+}
+
+.age label,
+.name label {
+    white-space: nowrap;
+}
+
+.age input,
+.name input {
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 1em;
+    padding: .2em;
+    padding-left: 1em;
+    border-radius: 5px;
+    border: #D13035 solid 1px;
+    background: #ffccc5;
+}

@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -40,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin(){
+        return $this->role === 'admin';
+    }
+
+    public function isParent(){
+        return $this->role === 'parent';
+    }
+
+    public function parent(){
+        return $this->hasOne(Parents::class, 'user_id', 'id');
+    }
+
 }
