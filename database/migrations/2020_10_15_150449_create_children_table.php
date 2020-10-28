@@ -19,7 +19,7 @@ class CreateChildrenTable extends Migration
             $table->date('DOB');
             $table->enum('gender', ['male', 'female']);
             $table->string('place_of_birth');
-            $table->unsignedSmallInteger('adoption_status')->default(0);
+            $table->integer('adoption_status')->default(0);
             $table->unsignedBigInteger('adopted_by')->nullable();
             $table->timestamp('adopted_on')->nullable();
             $table->timestamps();

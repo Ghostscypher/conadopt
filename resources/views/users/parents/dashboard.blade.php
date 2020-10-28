@@ -44,11 +44,16 @@
 
                                     @if((int) $child->adoption_status === 1 && $child->parent !== null)
                                         <div class="child-adopted-by" style="font-weight: bold">Adoption request sent</a></div>
+                                    @elseif((int) $child->adoption_status === 2 && $child->parent !== null)
+                                        <div class="child-adopted-by" style="font-weight: bold">Adoption request rejected</a></div>
+                                    @else
+                                        <div class="child-adopted-by" style="font-weight: bold">Adoption request accepted</a></div>
                                     @endif
+
                                     <div id="error-id" class="error"></div>
 
                                     <div class="edit-buttons">
-                                        @if($child->parent === null)
+                                        @if($child->parent === null || (int) $child->adoption_status === 2)
                                             <button class="btn-adopt" data-target="{{$child->id}}">Adopt</button>
                                         @endif
                                     </div>
@@ -64,14 +69,16 @@
 @include('layout.body')
 
 <script>
-    qs('.btn-adopt').onclick = function(){
-        qsa('.error').forEach(element => {
-            element.innerHTML = '';
-        });
+    if(qs('.btn-adopt') !== null){
+        qs('.btn-adopt').onclick = function(){
+            qsa('.error').forEach(element => {
+                element.innerHTML = '';
+            });
 
-        ajaxPOST(`${location.origin}/child/adopt`, JSON.stringify({
-            id: this.dataset.target,
-        }), null, onChildAdoptedCallback);
+            ajaxPOST(`${location.origin}/child/adopt`, JSON.stringify({
+                id: this.dataset.target,
+            }), null, onChildAdoptedCallback);
+        };
     };
 
     function onChildAdoptedCallback(data){

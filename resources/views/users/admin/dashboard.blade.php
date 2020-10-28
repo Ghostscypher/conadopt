@@ -71,6 +71,22 @@
         </div>
     </div>
 
+    <div class="adopt-popup" style="display: none">
+        <div class="popup-container">
+            <div class="popup-div">
+                <div id="parent-name" class="name">Name</div>
+                <div id="parent-phone" class="name">Telephone</div>
+                <div id="parent-email" class="name">Email</div>
+
+                <div class="save-changes-buttons">
+                    <button id="btn-cancel">Cancel</button>
+                    <button id="btn-reject-adoption">Reject adoption</button>
+                    <button id="btn-accept-adoption">Accept adoption</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="nav">
         <ul>
             <li><a href="{{url('/')}}">Home</a></li>
@@ -100,6 +116,10 @@
                     No children found, please add at least one child.
                 </div>
             @else
+            <script>
+                let parent_map = new Map();
+            </script>
+
                 @foreach ($children as $child)
                     <div class="actual-child-details">
 
@@ -117,7 +137,15 @@
 
                             @if($child->parent !== null)
                                 @if((int) $child->adoption_status === 1)
-                                    <div class="child-adopted-by" style="font-weight: bold">Adoption request by <a href="#">{{$child->parent->user->name}}</a></div>
+                                    <div class="child-adopted-by" style="font-weight: bold">Adoption request by
+                                        <a id="adopt-{{$child->parent->id}}" data-cid="{{$child->id}}" data-id="{{$child->parent->id}}" href="#" class="adoption-request">{{$child->parent->user->name}}</a>
+
+                                        <script>
+                                            parent_map.set({{$child->parent->id}}, @json($child->parent));
+                                        </script>
+                                    </div>
+                                @elseif((int) $child->adoption_status === 2)
+                                    <div class="child-adopted-by">Adopted request rejected</a></div>
                                 @else
                                     <div class="child-adopted-by">Adopted by <a href="#">{{$child->parent->user->name}}</a></div>
                                @endif
@@ -299,7 +327,7 @@
         }
 
         setTimeout(() => {
-            qs('#report-table').innerHTML = `<table>Please waiy fething data</table>`;
+            qs('#report-table').innerHTML = `<table>Please wait fething data</table>`;
             ajaxGet(`${location.origin}/child/reports/get/${this.value.trim().toLowerCase()}`, null, null, onReportsFetchedCallback);
         }, 2000);
 
@@ -307,5 +335,49 @@
 
     // qs('.btn-delete_child').onclick = function(){
     // };
+
+    let id = null;
+    let cid = null;
+
+    qs('.adoption-request').onclick = function(e){
+        id = parseInt(this.dataset.id);
+        cid = id = parseInt(this.dataset.cid);
+
+        let parent = parent_map.get(id);
+
+        qs('#parent-name').innerHTML = 'Name: ' + parent.user.name;
+        qs('#parent-phone').innerHTML = 'Phone: ' + parent.phone;
+        qs('#parent-email').innerHTML = 'Email: ' + parent.user.email;
+
+        qs('.adopt-popup').style.display = 'block';
+    };
+
+    qs('#btn-reject-adoption').onclick = function(){
+        ajaxPOST(`${location.origin}/child/adoption/process`, JSON.stringify({
+            id: cid,
+            choice: 'reject',
+        }), null, onAdoptionAcceptedOrRejected);
+    };
+
+    qs('#btn-accept-adoption').onclick = function(){
+        ajaxPOST(`${location.origin}/child/adoption/process`, JSON.stringify({
+            id: cid,
+            choice: 'accept',
+        }), null, onAdoptionAcceptedOrRejected);
+    };
+
+    qs('#btn-cancel').onclick = function(){
+        qs('.adopt-popup').style.display = 'none';
+    };
+
+    function onAdoptionAcceptedOrRejected(data){
+        if(data.code === 200){
+            alert("Successfully processed your request");
+            window.location.href = "";
+        } else {
+            alert("An error occured while trying to process your request, please try again later");
+            qs('.adopt-popup').style.display = 'none';
+        }
+    };
 
 </script>

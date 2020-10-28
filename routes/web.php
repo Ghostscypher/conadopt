@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::post('child/save', [ChildController::class, 'save']);
         Route::post('child/edit', [ChildController::class, 'edit']);
+        Route::post('child/adoption/process', [ChildController::class, 'adoptionChoice']);
 
     });
 

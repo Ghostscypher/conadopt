@@ -95,7 +95,14 @@ class ChildController extends Controller
         $parent = Parents::where('user_id', auth()->user()->id)->first();
         $child = Child::find($request->id);
 
-        if($child->adoption_status !== 0){
+        $reject_adoption_request = [
+            0 => false,
+            1 => true,
+            2 => false,
+            3 => true,
+        ];
+
+        if($reject_adoption_request[(int) $child->adoption_status]){
             return $this->jsonResult(400, $validator->errors()->add('id', 'Child is already adopted, or has a pending approval'));
         }
 
@@ -114,7 +121,7 @@ class ChildController extends Controller
         switch($filter){
             case 'thisday':
                 return $this->jsonResult(200, Child::whereDate('adopted_on', Carbon::today())
-                ->where('adoption_status', '!=', 0)
+                ->where('adoption_status', 3)
                 ->with(['parent', 'parent.user'])
                 ->orderByDesc('adopted_on')
                 ->get());
@@ -122,17 +129,39 @@ class ChildController extends Controller
             case 'thismonth':
                 return $this->jsonResult(200, Child::whereMonth('adopted_on', now()->month)
                     ->whereYear('adopted_on', now()->year)
-                    ->where('adoption_status', '!=', 0)
+                    ->where('adoption_status', 3)
                     ->with(['parent', 'parent.user'])
                     ->orderByDesc('adopted_on')
                     ->get());
 
             default:
                 return $this->jsonResult(200, Child::with(['parent', 'parent.user'])
-                ->where('adoption_status', '!=', 0)
+                ->where('adoption_status', 3)
                 ->orderByDesc('adopted_on')
                 ->get());
         }
     }
 
+    public function adoptionChoice(Request $request){
+        $validator = Validator::make($request->all(),[
+            'id' => 'bail|required|exists:Children,id',
+            'choice' => 'bail|required|in:accept,reject',
+        ]);
+
+        if($validator->fails()){
+            return $this->jsonResult(400, $validator->errors());
+        }
+
+        $child = Child::find($request->id);
+
+        if(strtolower($request->choice) === 'accept'){
+            $child->adoption_status = 3;
+        } else {
+            $child->adoption_status = 2;
+        }
+
+        $child->update();
+
+        return $this->jsonResult(200, "Success");
+    }
 }
