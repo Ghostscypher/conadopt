@@ -46,7 +46,7 @@
                                         <div class="child-adopted-by" style="font-weight: bold">Adoption request sent</a></div>
                                     @elseif((int) $child->adoption_status === 2 && $child->parent !== null)
                                         <div class="child-adopted-by" style="font-weight: bold">Adoption request rejected</a></div>
-                                    @else
+                                    @elseif((int) $child->adoption_status === 3 && $child->parent !== null)
                                         <div class="child-adopted-by" style="font-weight: bold">Adoption request accepted</a></div>
                                     @endif
 
